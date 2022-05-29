@@ -1,0 +1,14 @@
+What is the value of smart contracts?
+    Trust Minimized Agreements (Unbreakable promises)
+
+    Other features of Smart Contracts:
+        1. Decentralized (node operators run blockchains)
+        2. Transparency and Flexibility
+        3. Speed and Efficiency
+        4. Security and Immutability
+        5. Counter Party Risk Removal
+
+State of Smart Contracts:
+    - Defi (~200B value locked)
+    - DAOs - governance Decentralized
+    - NFTs 
