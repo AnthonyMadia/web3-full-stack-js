@@ -12,3 +12,105 @@ State of Smart Contracts:
     - Defi (~200B value locked)
     - DAOs - governance Decentralized
     - NFTs 
+
+How do blockchains work?
+    - andersbrownworth.com/blockchain (good refresher)
+    - hash: A unique fixed length string, meant to identify a piece of data.
+    They are created by placing said data into a "hash function".
+        - Ethereum uses Keccak256
+    - in *a* Block:
+        - we hash the Block, Nonce and Data
+            - When mining, the Nonce changes. The miners are computing to find the Nonce that starts with 0000
+    - Block*chain*:
+        - Prev - points to previous hash of the last block
+            - if data is changed on a block, that corrupts the blocks after itself. This gives blockchains their immutable property.
+    - Distributed:
+        - Peers running a blockchain have exact same power as other Peers
+        - Hash encompasses all blocks from before
+            - Very easy for nodes to make sure they are in sync by looking at last hash
+            - Peer nodes keep each other accountable and stop malicious nodes from changing and remining data (democracy rules)
+    - Tokens
+        - Txs examples
+    - Nonce: A 'number used once' to find the "solution" to the blockchain problem. It's also used to define the transaction number for an account/address.
+
+    Instead of data, solidity code will be there to find and interact with different blocks that are on chain (or different smart contracts).
+        
+
+Signing Transactions
+    - Ethereum uses Elliptic Curve Digtial Signature Algorithm
+    - Public and Private Keys
+        - Private key: only known to key holder and used to 'sign' Transactions
+            - signing txs will create message sig but no one can derive private key from that sig
+        - Public Key: people can verify txs
+            - Derived from your private key. Anyone can see it and use it to verify that a tx came from you.
+        Signing Tx:
+            - One way process. Someone with a private key signs a tx by their private key being hashed with their tx data. Anyone can then verify this new transation hash with your public key.
+
+        Private Key -> Public Key -> Address
+
+Gas:
+    The more people using the chain, the more expensive it is to send txs.
+
+    EIP1559: Every tx comes to base fee: the minimum *gas price* to send your tx
+        - Base fee gets burnt
+    - Whenever you send a tx a small amount of Eth is burnt
+    - input data for smart contracts in interesting
+
+Different blockchains have different algorithms and implementation
+    - Blockchains run on a network of different independent nodes
+    Node: a single instance in a decentralized network (1 server running this technology)
+        - anyone can join the network
+    Blockchains are resilient with thousands of nodes storing copy of txs
+    Ethereum: decentralized database and computation in decentralized manner
+
+Consensus
+    - Consensus is the mechanism used to agree on the state of a blockchain
+    1. Chain Selection Algorithm
+        - how do we know that a blockchain is the real blockchain
+            - Nakamoto Consensus
+                - Combo of PoW and Longest Chain Rule
+                - PoW is a piece in the overall consensus protocol.
+    2. Sybil Resistance 
+        - defends against malicious actors creating fake nodes to control network
+
+    PoW 
+        - single node going through computationally expensive process
+        Blockchains make this easier or harder to manipulate the block time
+            - block time is how long it takes before blocks are published
+
+    Bitcoin halving
+        - block reward for miners getting cut in half ~4 years.
+             - the Block Reward increases the amount of circulating cryptocurrency
+    
+    Miners will only get paid with tx fees in future
+        
+Attacks:
+    Sybil Attack
+        - bad actor creating accounts to influence network
+    51% Attack
+        - happened on Eth Classic
+        - run a node to increase security of the network!
+
+PoS 
+    PoS nodes put up collateral as a sybil resistance mechanism 
+        if node misbehaves they lose portion of stake
+    Considered slightly less decentralized because of staking requirement
+
+
+Randomness
+    Blockchains are walled garders from rest of world so how do blockchains choose random node
+        Eth2 is using Randao
+            decentralized organization that chooses the random node
+
+Scalability
+    Sharding:
+        blockchain of blockchains. The main chain will coordinate the other chains that hook into main chain. This means there are more chains for people to make txs on L1
+
+Layer1: base layer blockchain implementation
+Layer2: Any application built on top of a layer 2
+
+Rollups
+    Arbitrum and Optimism
+    -They roll up their txs into a Layer 1 like ethereum. Roll ups are kind of like a sharded chain. Roll ups derivce security from Layer 1 and bulk send their txs to layer 1
+    - Different from side chains because they derive their security from their own protocols
+
