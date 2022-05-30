@@ -114,3 +114,9 @@ Rollups
     -They roll up their txs into a Layer 1 like ethereum. Roll ups are kind of like a sharded chain. Roll ups derivce security from Layer 1 and bulk send their txs to layer 1
     - Different from side chains because they derive their security from their own protocols
 
+===========================================================
+
+When deploying a contract, it is compiled down to the EVM (Ethereum Virtual Machine)
+    - EVM is a standard on how to deploy contracts to the blockchain
+    - Any blockchain that implements an EVM, you can deploy a solidity contract to 
+        - Avalanche, Fantom, Polygon
