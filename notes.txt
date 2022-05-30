@@ -133,3 +133,53 @@ Importing Contracts
     import statement
 
 Can have different solidity versions
+
+===========================================================
+Lesson 4: Remix Fund Me
+
+FundMe.sol 
+    - allows people to fund a collective good
+    - people can send ether, etc. into this contract and owner of contract can withdraw those funds and do whatever they want
+    - this function will have 2 PAYABLE functions (red in Remix
+        fund - send money to the contract
+            - send value along with transaction
+        withdraw 
+            - only the person that deployed this contract can withdraw from it!
+
+    Oracle Problem
+        - Smart Contracts are deterministic so all nodes could reach consensus -- if not, different nodes would get different data and will not reach consensus 
+        - Blockchain oracle: Any device that interacts with the off-chain world to provide external data or computation to smart contracts
+        - Chainlink gets data from decentralized network (creates Hybrid smart contracts)
+            - Chinlink Data feeds
+                - A network of different chainlink nodes gets data from exchanges and data providers and brings that data through a network of decentrazlied chainlink nodes. 
+                - Chainlink nodes use a medium to figure out what the acutal price of the asset is and then deliver that in a single transaction to a REFERNCE CONTRACT on chain that other smart contracts can use
+                - Then, those smart contracts use that pricing information to power their defi application
+                - data.chain.link
+                    - popular price feeds
+                    - On Eth/usd we see network independent chainlink node operators all getting different answers for eth/usd price
+                    - updated .5% deviation threshold or heartbeat (whichever one hits first)
+                    - Whenever a node operator delivers data to a smart contract, the chainlink node operators are paid oracle gas in chainlink token (sponsors are paying oracle gas to deliver data on chain)
+                    - Reuptation is incredibly important as Chainlink node operator
+                    - used by defi protocols
+
+                - docs.chain.link
+                    - EVM Chains 
+                        - Data feeds
+
+                - Chainlink VRF 
+                    - need true randomness by looking outside of blockchain to guarntee fairness and randomness 
+
+                - Chainlink Keepers
+                    - Decentralized Event Driven Execution
+                        - somebody needs to spend the gas and hit transaction button 
+                        - Keepers are chainlink nodes that listen to regitration contract for different events you specify (do x when event x occurs)
+                        - chainlink nodes constantly listen for these events
+                - End - to - End reliability 
+                    - want and need them to take any input and get any output 
+                    - Get and Post requests
+                    - Chainlink nodes can make api calls 
+                    - Need to choose chainlink node and the url/data to send the reuest to 
+                    - You have to create chainlink network that gets data from different chainlink nodes and providers
+
+                    - Sending transation for request 
+                    - Sending another transation to get data

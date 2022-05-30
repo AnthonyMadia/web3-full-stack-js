@@ -12,8 +12,8 @@ contract ExtraStorage is SimpleStorage {
     // overriding functions
     // Virtual ||  Override
         // "Overriding function is missing "override" specifier"
+        // need to override keyword to change the functionality of parent function
     function store(uint256 _favoriteNumber) public override {
         favoriteNumber = _favoriteNumber + 5;
     }
 }
-
