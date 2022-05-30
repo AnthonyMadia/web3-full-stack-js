@@ -10,12 +10,29 @@ contract SimpleStorage {
 
     // set to public, these variables contain a GETTER function 
     uint public favoriteNumber;
-    People public person = People({favoriteNumber: 2, name: "Dory"});
+
+    // KEY => VALUE
+    mapping(string => uint256) public nameToFavoriteNumber;
 
     // now, we can use this People type
     struct People {
         uint256 favoriteNumber;
         string name;
+    }
+    // use array for a struct list; [] empty array is DYNAMIC
+    // [3] can only have max of 3
+    People[] public people; 
+
+    // function that adds people to our array
+    function addPeople(string memory _name, uint256 _favoriteNumber) public {
+        // create newPerson variable with type People
+            // with this method, we need memory keyword
+        // People memory newPerson = People(_favoriteNumber, _name);
+        // Lowercase people is reffering to the array not struct People
+        people.push(People(_favoriteNumber, _name));
+
+        // add people to MAPPING
+        nameToFavoriteNumber[_name] = _favoriteNumber
     }
 
     function store(uint256 _favoriteNumber) public {
@@ -47,8 +64,31 @@ contract SimpleStorage {
         // store different people who have different favoriteNumbers
 
 
+// Errors
+    // don't forget semicolon
 
+// Memory, Storage, and Calldata
+    // EVM can access and store information in six places:
+        // stack
+        // Memory
+        // Storage
+        // Calldata
+        // Code 
+        // Logs
 
+    // Calldata, Memory, and Storage
+        // Calldata and Memory mean variable will be temporary
+            // if a variable is calldata, you cannot reassign it
+            // memory varibles CAN be modified
+        // Storage variables are *permenant* variables that *can* be modified
+        // Solidity knows uint256 is held in memory so no need write memory keyword
+        // string is an array of bytes 
+
+    // We cannot say a variable is Stack, Code, or Logs
+
+// Mapping datastructure (more efficient look up)
+    // mapping is a data structure where a key is "mapped" to a single value (object in JS)
+    // When you create a mapping, you initialize everything to its' null value
 
 
 
@@ -67,3 +107,7 @@ contract SimpleStorage {
     // internal - only visible internally
 
 // The more computation the function does, the more gas it costs
+
+
+// Deploying Contract
+    // 
