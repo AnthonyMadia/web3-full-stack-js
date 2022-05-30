@@ -32,7 +32,7 @@ contract SimpleStorage {
         people.push(People(_favoriteNumber, _name));
 
         // add people to MAPPING
-        nameToFavoriteNumber[_name] = _favoriteNumber
+        nameToFavoriteNumber[_name] = _favoriteNumber;
     }
 
     function store(uint256 _favoriteNumber) public {
