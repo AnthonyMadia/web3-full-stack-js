@@ -120,3 +120,16 @@ When deploying a contract, it is compiled down to the EVM (Ethereum Virtual Mach
     - EVM is a standard on how to deploy contracts to the blockchain
     - Any blockchain that implements an EVM, you can deploy a solidity contract to 
         - Avalanche, Fantom, Polygon
+
+
+===========================================================
+Lesson 3 - Remix Storage Factory
+
+Contracts can deploy contracts
+    Contracts interacting with each other is Composability 
+        - Composability allows Defi contracts to interact and create sophisticated financial products
+
+Importing Contracts
+    import statement
+
+Can have different solidity versions

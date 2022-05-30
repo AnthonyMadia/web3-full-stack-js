@@ -107,7 +107,3 @@ contract SimpleStorage {
     // internal - only visible internally
 
 // The more computation the function does, the more gas it costs
-
-
-// Deploying Contract
-    // 
