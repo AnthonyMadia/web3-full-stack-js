@@ -27,7 +27,7 @@ async function main() {
         gasPrice: 1000000000
     }) // STOP HERE! Wait for contract to deploy
     await contract.deployTransaction.wait(1)
-    
+    console.log(`Contract address: ${contract.address}`)
 
     // retrieve is a view function so will not cost any gas
     const currentFavoriteNumber = await contract.retrieve()
