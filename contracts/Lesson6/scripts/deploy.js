@@ -11,6 +11,7 @@ async function main() {
   const simpleStorage = await SimpleStorageFactory.deploy()
   await simpleStorage.deployed()
   console.log(`Deployed contract to: ${simpleStorage.address}`)
+  
   if (network.config.chainId === 4 && process.env.ETHERSCAN_API_KEY) {
     await simpleStorage.deployTransaction.wait(6)
     await verify(simpleStorage.address, [])
@@ -26,6 +27,7 @@ async function main() {
   console.log(`Updated Value is ${updatedValue}`)
 }
 
+// verify 
 async function verify (contractAddress, args) {
   console.log("Verifying contract...")
   try {
