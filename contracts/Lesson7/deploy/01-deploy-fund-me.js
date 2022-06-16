@@ -1,35 +1,29 @@
-// import 
-const { networkConfig } = require("../helper-hardhat-config")
-const { network } = require("hardhat") 
-// using namesless async function 
+const { network } = require("hardhat")
 
-// module.exports = async (hre) => {
-//     // pull out vairables and functions out of hardhat runtime environment (hre)
-//     const { getNamedAccounts , deployments } = hre 
-//     // same as hre.getNamedAccounts etc. 
-// }
-
-// syntatic sugar - Object Destructuring 
+const DECIMALS = "8"
+const INITIAL_PRICE = "200000000000" // 2000
 module.exports = async ({ getNamedAccounts, deployments }) => {
-    const { deploy, log } = deployments 
-    const { deployer } = await getNamedAccounts() 
+    const { deploy, log } = deployments
+    const { deployer } = await getNamedAccounts()
     const chainId = network.config.chainId
-
-    // if chainId is C use address Y
-    const ethUsdPriceFeedAddress = networkConfig[chainId]["ethUsdPriceFeed"]
-
-    // if the contract does not exist, we deploy a minimal version of it for local testing
-
-    // when going for local host or hardhat network, we want to use a MOCK
-    // what happens when we want to change chains?
-
-    const fundMe = await deploy("FundMe", {
-        from: deployer, 
-        args: [
-
-        ], // put price feed address 
-        log: true
-    })
+    // If we are on a local develohelppment network, we need to deploy mocks!
+    if (chainId == 31337) {
+        log("Local network detected! Deploying mocks...")
+        await deploy("MockV3Aggregator", {
+            contract: "MockV3Aggregator",
+            from: deployer,
+            log: true,
+            args: [DECIMALS, INITIAL_PRICE],
+        })
+        log("Mocks Deployed!")
+        log("------------------------------------------------")
+        log(
+            "You are deploying to a local network, you'll need a local network running to interact"
+        )
+        log(
+            "Please run `npx hardhat console` to interact with the deployed smart contracts!"
+        )
+        log("------------------------------------------------")
+    }
 }
-
 module.exports.tags = ["all", "mocks"]
