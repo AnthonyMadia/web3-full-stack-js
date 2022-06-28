@@ -1,29 +1,36 @@
-const { network } = require("hardhat")
+const { getNamedAccounts, deployments, network } = require("hardhat")
+const { networkConfig, developmentChains } = require("../helper-hardhat-config")
+const { verify } = require("../utils/verify")
 
-const DECIMALS = "8"
-const INITIAL_PRICE = "200000000000" // 2000
 module.exports = async ({ getNamedAccounts, deployments }) => {
     const { deploy, log } = deployments
     const { deployer } = await getNamedAccounts()
     const chainId = network.config.chainId
-    // If we are on a local develohelppment network, we need to deploy mocks!
+
+    let ethUsdPriceFeedAddress
     if (chainId == 31337) {
-        log("Local network detected! Deploying mocks...")
-        await deploy("MockV3Aggregator", {
-            contract: "MockV3Aggregator",
-            from: deployer,
-            log: true,
-            args: [DECIMALS, INITIAL_PRICE],
-        })
-        log("Mocks Deployed!")
-        log("------------------------------------------------")
-        log(
-            "You are deploying to a local network, you'll need a local network running to interact"
-        )
-        log(
-            "Please run `npx hardhat console` to interact with the deployed smart contracts!"
-        )
-        log("------------------------------------------------")
+        const ethUsdAggregator = await deployments.get("MockV3Aggregator")
+        ethUsdPriceFeedAddress = ethUsdAggregator.address
+    } else {
+        ethUsdPriceFeedAddress = networkConfig[chainId]["ethUsdPriceFeed"]
+    }
+    log("----------------------------------------------------")
+    log("Deploying FundMe and waiting for confirmations...")
+    const fundMe = await deploy("FundMe", {
+        from: deployer,
+        args: [ethUsdPriceFeedAddress],
+        log: true,
+        // we need to wait if on a live network so we can verify properly
+        waitConfirmations: network.config.blockConfirmations || 1,
+    })
+    log(`FundMe deployed at ${fundMe.address}`)
+
+    if (
+        !developmentChains.includes(network.name) &&
+        process.env.ETHERSCAN_API_KEY
+    ) {
+        await verify(fundMe.address, [ethUsdPriceFeedAddress])
     }
 }
-module.exports.tags = ["all", "mocks"]
+
+module.exports.tags = ["all", "fundme"]

@@ -183,3 +183,41 @@ FundMe.sol
 
                     - Sending transation for request 
                     - Sending another transation to get data
+===================================================
+Lesson 6: Hardhat 
+    JS based Dev environement to compile, deploy, test and debug EVM based smart contract 
+
+    Grab contracts in hardhat 
+        using ethers 
+            import ethers directly from hardhat
+            hardhat knows about already compiled contracts
+    rpc url and address
+
+    Networks in hardhart
+        Hardhat comes built-in with Hardhat Network, a local Ethereum network node designed for development, akin to Ganache, geth --dev, etc. It allows you to deploy your contracts, run your tests and debug your code. 
+        
+        Runs as either an in-process or stand alone daemon, servicing JSON-RPC and WebSocket requests. 
+
+
+=====================================================
+Lesson 7: Hardhat Fund Me 
+
+    Using hardhat deploy - yarn add --dev @nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers ethers  
+
+    Deploy to testnet as last stop after we do all of our testing locally 
+    
+    Deploy to hardhat network first
+    We could fork a blockchain where we can keep stuff hardcoded, but usually still better to use MOCKS 
+
+    MOCKS
+        Mocking is primarily used for uniting testing. An object under test may have dependencies on other objects. To isolate the behavior of the object you want to replace the other objects by mocks that simulate the behavior of the real objects. This is useful if the real objects are impractical to incorporate into the unit test. 
+
+        In short, mocking is creating objects that simulate the behavior of real objects.
+
+    Essentially, we are creating a fake price feed contract that we can control when working locally.  
+
+    Need to add mock to contracts folder
+
+    Create scripts to deploy to any chain (locally, testnet or mainnet)
+
+    
