@@ -7,7 +7,7 @@ require("solidity-coverage");
 
 const PRIVATE_KEY = process.env.PRIVATE_KEY
 const RINKEBY_URL = process.env.RINKEBY_URL
-const COIN_MRKT_API = process.end.COIN_API_KEY
+const COIN_MRKT_API = process.env.COIN_API_KEY
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY
 
 
@@ -24,6 +24,7 @@ module.exports = {
     rinkeby: {
       url: RINKEBY_URL || "",
       accounts: [PRIVATE_KEY],
+      chainId: 4,
       blockConfirmations: 6,
     },
   },
