@@ -221,3 +221,13 @@ Lesson 7: Hardhat Fund Me
     Create scripts to deploy to any chain (locally, testnet or mainnet)
 
     
+
+    Unit Test 
+        - testing minimal portions of our code's functionality isolated from other parts of functionality
+        - could be done with 
+            - local hardhat 
+            - forked hardhat 
+
+    Staging (Integration testing) - Last Stop before deploying
+
+    e2e test?
