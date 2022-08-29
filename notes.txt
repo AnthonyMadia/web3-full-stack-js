@@ -231,3 +231,11 @@ Lesson 7: Hardhat Fund Me
     Staging (Integration testing) - Last Stop before deploying
 
     e2e test?
+
+
+When building Dapps, you usually have 2 repos: 
+    - one for the smart contracts 
+    - one for the front end/ website
+
+Full Stack = Smart Contracts (backend) + JS/HTML/CSS (frontend)
+
